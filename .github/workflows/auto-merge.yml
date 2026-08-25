@@ -5,6 +5,7 @@ on:
     branches:
       - 'cyi'          # main으로 자동 병합할 브랜치명 (필요시 변경)
       - 'OSY'          # main으로 자동 병합할 브랜치명 (필요시 변경)
+      - 'SJY'          # main으로 자동 병합할 브랜치명 (필요시 변경)
       # - 'feature/**' # 와일드카드 패턴 사용 가능
 
 permissions:
