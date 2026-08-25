@@ -1,0 +1,29 @@
+name: Auto Merge to Main
+
+on:
+  push:
+    branches:
+      - 'cyi'          # main으로 자동 병합할 브랜치명 (필요시 변경)
+      - 'OSY'          # main으로 자동 병합할 브랜치명 (필요시 변경)
+      # - 'feature/**' # 와일드카드 패턴 사용 가능
+
+permissions:
+  contents: write
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Merge into main branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout main
+          git pull origin main
+          git merge origin/${{ github.ref_name }} --no-ff -m "Auto-merged ${{ github.ref_name }} into main"
+          git push origin main
